@@ -1,43 +1,39 @@
-﻿using Xunit;
-using PasswordCheck;
+﻿namespace PasswordCheckerTests;
 
-
-namespace PasswordCheckerTests;
-
-
-public class PasswordCheckTests
-{
-        [Fact]
-        public void NoCriteriaMet()
+    public class PasswordCheckTests
         {
-            Assert.True("INELLIGIBLE", Strength.PasswordCheck(""));
-            Assert.True("INELLIGIBLE", Strength.PasswordCheck("  "));
+            [Fact]
+                public void NoCriteriaMet()
+            {
+                Assert.Equal("INELIGABLE", PasswordChecker.CheckStrength(""));
+            }
 
-        }
-        [Fact]
-        public void OneCriteriaMet()
-        {
-            Assert.True("WEAK", Strength.PasswordCheck("abcdef"));
-            Assert.True("WEAK", Strength.PasswordCheck("ABCDF"));
-            Assert.True("WEAK", Strength.PasswordCheck("123456"));
-            Assert.True("WEAK", Strength.PasswordCheck("!!!!!"));
-        }
-        [Fact]
-        public void TwoOrThreeCriteriaMet()
-        {
-            Assert.True("MEDIUM", Strength.PasswordCheck("abc123"));
-            Assert.True("MEDIUM", Strength.PasswordCheck("Abc123"));
-            Assert.True("MEDIUM", Strength.PasswordCheck("ABCabc"));
+            [Fact]
+                public void OneCriteriaMet()
+            {
+                Assert.Equal("WEAK", PasswordChecker.CheckStrength("a"));
+            }
 
-        }
-        [Fact]
-        public void AllCriteriaMet()
-        {
-            Assert.True("STRONG", Strength.PasswordCheck("Abc123!"));
-            Assert.True("STRONG", Strength.PasswordCheck("VsU2027$!"));
-        }
+            [Fact]
+                public void TwoCriteriaMet()
+            {
+                Assert.Equal("MEDIUM", PasswordChecker.CheckStrength("aA")); 
+            }
+
+            [Fact]
+                public void ThreeCriteriaMet()
+            {
+                Assert.Equal("MEDIUM", PasswordChecker.CheckStrength("aA1"));
+            }
+
+            [Fact]
+                public void AllCriteriaMet()
+            {
+                Assert.Equal("STRONG", PasswordChecker.CheckStrength("@aA1"));
+            }
 
     }
+    
     
 
 

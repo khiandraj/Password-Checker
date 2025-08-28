@@ -1,58 +1,52 @@
-﻿
-
-namespace PasswordChecker;
-
-
-public class Class1
+﻿namespace PasswordCheckerTests
 {
-    public static string CheckStrength(string password)
+    public class PasswordChecker
     {
 
+        static char [] symbols = {'!', '@', '#', '$', '%', '&', '*'};
 
-    bool hasUpper = false;
-    bool hasLower = false; 
-    bool hasDigit = false; 
-    bool hasSymbol = false; 
+        public static string CheckStrength(string password)
+        {
 
-    foreach (char ch in password)
-    {
-        if (char.IsUpper(ch))
-            hasUpper = true;
-        else if (char.IsLower(ch))
-            hasLower = true;
-        else if (char.IsDigit(ch))
-            hasDigit = true;
-        else
-            hasSymbol = true;
+            int count = 0;
+            
+            if (password.Any(char.IsLower))
+            {
+                count++;
+            }
+
+            
+            if (password.Any(char.IsUpper))
+            {
+                count++;
+            }
+
+            
+            if (password.Any(char.IsDigit))
+            {
+                count++;
+            }
+
+            Console.Write("Checking symbol");
+            if (password.Any(c=> symbols.Contains(c)))
+            {
+                Console.Write("Found symbol");
+                count++;
+            }
+
+            switch (count)
+            {
+                case 0:
+                    return "INELIGABLE"; 
+                case 1:
+                    return "WEAK";
+                case 2 or 3:
+                    return "MEDIUM";
+                case 4:
+                    return "STRONG";
+                default:
+                    return "INELIGABLE"; 
+            }
+        }
     }
-
-    int metCriteria = 0;
-    if (hasUpper) metCriteria++;
-    if (hasLower) metCriteria++;
-    if (hasDigit) metCriteria++;
-    if (hasSymbol) metCriteria++;
-
-    if (metCriteria == 0)
-        return "INELIGIBLE";
-    else if (metCriteria == 1)
-        return "WEAK";
-    else if (metCriteria == 2 || metCriteria == 3)
-        return "MEDIUM";
-    else if (metCriteria == 4)
-        return "STRONG"; 
-    else
-        return "INELIGIBLE"; 
-
-
-
-
-    
-        
-
-        
-
-
-        
-
-}
 }
