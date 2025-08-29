@@ -9,6 +9,11 @@
         {
 
             int count = 0;
+
+            if (password.Length < 8)
+            {
+                return "INELIGABLE";
+            }
             
             if (password.Any(char.IsLower))
             {
@@ -33,6 +38,7 @@
                 Console.Write("Found symbol");
                 count++;
             }
+            
 
             switch (count)
             {
