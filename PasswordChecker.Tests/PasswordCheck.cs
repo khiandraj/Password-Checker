@@ -11,26 +11,33 @@
             [Fact]
                 public void OneCriteriaMet()
             {
-                Assert.Equal("WEAK", PasswordChecker.CheckStrength("a"));
+                Assert.Equal("WEAK", PasswordChecker.CheckStrength("abcdefgh"));
             }
 
             [Fact]
                 public void TwoCriteriaMet()
             {
-                Assert.Equal("MEDIUM", PasswordChecker.CheckStrength("aA")); 
+                Assert.Equal("MEDIUM", PasswordChecker.CheckStrength("aAbcdefg")); 
             }
 
             [Fact]
                 public void ThreeCriteriaMet()
             {
-                Assert.Equal("MEDIUM", PasswordChecker.CheckStrength("aA1"));
+                Assert.Equal("MEDIUM", PasswordChecker.CheckStrength("aA1cdefg"));
             }
 
             [Fact]
                 public void AllCriteriaMet()
             {
-                Assert.Equal("STRONG", PasswordChecker.CheckStrength("@aA1"));
+                Assert.Equal("STRONG", PasswordChecker.CheckStrength("@aA1cdef"));
             }
+
+            [Fact]
+                public void PasswordShorterThanEightFails()
+            {
+                Assert.Equal("INELIGABLE", PasswordChecker.CheckStrength("aAb!23"));
+            }
+
 
     }
     
