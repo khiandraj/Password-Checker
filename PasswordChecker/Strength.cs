@@ -1,10 +1,17 @@
 ﻿namespace PasswordCheckerTests
 {
+
     public class PasswordChecker
     {
 
         static char [] symbols = {'!', '@', '#', '$', '%', '&', '*'};
 
+        ///<summary>
+        ///This checks the strength of the password by making sure it meets the 4 criteria. 
+        ///<summary>
+        ///<param name= "password">This is password parameter</param>
+        ///<returns>This returns "INELIGIBLE if no criteria are met, "WEAK" if one criteria is met, 
+        /// "MEDIUM" if two or three criteria are met and "STRONG if all criteria are met </returns>
         public static string CheckStrength(string password)
         {
 
