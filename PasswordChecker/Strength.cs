@@ -7,14 +7,13 @@
         static char [] symbols = {'!', '@', '#', '$', '%', '&', '*'};
 
         ///<summary>
-        ///This checks the strength of the password by making sure it meets the 4 criteria. 
+        ///This checks the strength of the password by making sure it meets the 5 criteria. 
         ///<summary>
         ///<param name= "password">This is password parameter</param>
         ///<returns>This returns "INELIGIBLE if no criteria are met, "WEAK" if one criteria is met, 
         /// "MEDIUM" if two or three criteria are met and "STRONG if all criteria are met </returns>
         public static string CheckStrength(string password)
         {
-
             int count = 0;
 
             if (password.Length < 8)
@@ -60,6 +59,21 @@
                 default:
                     return "INELIGABLE"; 
             }
-        }
+       
     }
 }
+public class UuidGenerator
+        {
+
+            /// <summary>
+            /// Generates Version 4 UUID
+            /// </summary>
+            /// <returns> Returns a valid Version 4 UUID </returns>
+
+            public static string GenerateV4Uuid ()
+            {
+                return Guid.NewGuid().ToString();
+            }
+        }
+}
+
